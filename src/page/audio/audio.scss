@@ -1,0 +1,334 @@
+.audio {
+  z-index: 11;
+  .content{
+    padding-top: 44px;
+    padding-bottom: 50px;
+  }
+  .top {
+    position: relative;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    #audio{
+      position: absolute;
+      height: 0;
+      opacity: 0;
+    }
+    .top-bg{
+      height: 180px;
+      background-size: cover;
+      background-position: center center;
+      // filter: blur(3px);
+      // opacity: .9;
+    }
+    .top-btn{
+      position: absolute;
+      top: 19px;
+      left: 50%;
+      margin-left: -66px;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background-color: #fff;
+      background-size: cover;
+      background-position: center center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: round 20s linear infinite;
+      will-change: transform;
+      &.pause{
+        animation-play-state: paused;
+      }
+    }
+    @keyframes round{
+      from{
+        transform: rotate(0deg)
+      }
+      to{
+        transform: rotate(360deg)
+      }
+    }
+    /* audio{
+      width: 100%;
+      display: block;
+      margin-top: 30px;
+      background-color: #fff;
+    } */
+    .top-control{
+      .top-date{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #666;
+      }
+      .top-padding{
+        padding: 5px 0;
+      }
+      .top-progress{
+        margin: 3px 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 3px;
+        background-color: #999;
+        .progress{
+          position: relative;
+          width: 10%;
+          height: 3px;
+          border-radius: 3px;
+          background-color: orange;
+          &::after{
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: orange;
+            position: absolute;
+            right: -6px;
+            top: -4.5px;
+            z-index: 1;
+          }
+        }
+      }
+      .top-btns{
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .btn-item{
+          margin: 0 10px;
+          width: 40px;
+          text-align: center;
+          font-size: 11px;
+          img{
+            margin-bottom: 5px;
+            height: 28px;
+          }
+          p{
+            color: #777;
+          }
+        }
+      }
+    }
+  }
+  .teacher {
+    height: 60px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    .avater {
+      position: relative;
+      margin: 0 15px;
+      img{
+        border-radius: 50%;
+      }
+      .v {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+    .teacher-name {
+      font-size: 15px;
+      color: #666;
+    }
+    .teacher-other {
+      span {
+        font-size: 12px;
+        color: #999;
+        vertical-align: middle;
+      }
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+  .audio-info{
+    padding: 10px 15px;
+    background-color: #fff;
+    font-size: 15px;
+    line-height: 20px;
+    color: #666;
+  }
+  .audio-con {
+    padding: 15px;
+    background-color: #fff;
+    h1 {
+      margin: 10px 0;
+      font-size: 16px;
+      text-align: center;
+    }
+    .answer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      border-radius: 5px;
+      border: solid 1px #1d9ff5;
+      img {
+        vertical-align: middle;
+        margin-right: 26px;
+      }
+      span {
+        font-size: 16px;
+        color: #1d9ff5;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .audio-txt{
+    background-color: #fff;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 15px;
+    color: #666;
+    line-height: 28px;
+    letter-spacing: 1px;
+    .txt-title{
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+  
+  .comment{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 15px;
+    box-sizing: border-box;
+    max-width: 540px;
+    height: 50px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+    z-index: 12;
+    input{
+      height: 40px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #eee;
+    }
+    input::-webkit-input-placeholder{
+      color: #999;
+      font-size: 18px;
+    }
+    span{
+      margin: 0 11px;
+      font-size: 17px;
+      color: #666;
+    }
+  }
+}
+/* .audio-mp3{
+	position: relative;
+}
+.listen-num{
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 11px;
+	color: #999;
+	line-height: 24px;
+}
+
+.audiojs{
+	width: 100%;
+	height: 27px;
+	background: #fff;
+	overflow: visible;
+	font-family: monospace;
+	font-size: 12px;
+	background-image: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+  .play-pause {
+    display: none;
+  }
+  .scrubber {
+    position: relative;
+    float: left;
+    width: 100%;
+    background: #ddd;
+    height: 3px;
+    margin: 0;
+    border-top: none;
+    border-left: 0;
+    border-bottom: 0;
+    overflow: visible;
+  }
+  
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    height: 3px;
+    width: 0;
+    background: #eb8542;
+    z-index: 23;
+    background-image: none;
+    background-image: none;
+    overflow: visible;
+  }
+  
+  .progress .audioBtn {
+    position: absolute;
+    top: -5px;
+    right: -6px;
+    width: 13px;
+    height: 13px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 50%;
+    background-color: #ff9147;
+  }
+  
+  .loaded {
+    display: none;
+  }
+  
+  .time {
+    float: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    border-left: none;
+    text-shadow: none;
+  }
+  .time{
+    color: #999;
+    font-size: 11px;
+  }
+  .time em {
+    float: left;
+    color: #999;
+    padding-right: 2px;
+    font-weight: normal;
+  }
+  
+  .time strong {
+    padding-left: 2px;
+    font-weight: normal;
+    color: #999;
+  }
+  
+  .error-message {
+    float: none;
+    margin: 0;
+    padding: 0 10px;
+    height: 24px;
+    width: 100%;
+    line-height: 24px;
+    color: #666;
+  }
+}
+ */
+/* audio.js */

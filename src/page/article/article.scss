@@ -1,0 +1,140 @@
+.article {
+  z-index: 11;
+  .content{
+    padding-top: 44px;
+    padding-bottom: 50px;
+  }
+  .top {
+    position: relative;
+    background-color: #fff;
+    // min-height: 100px;
+    .btn-back {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+    .btn-love {
+      position: absolute;
+      top: 15px;
+      right: 52.5px;
+    }
+    .btn-share {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+  }
+  .teacher {
+    height: 60px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    .avater {
+      position: relative;
+      margin: 0 15px;
+      img{
+        border-radius: 50%;
+      }
+      .v {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+    .teacher-name {
+      font-size: 15px;
+      color: #666;
+    }
+    .teacher-other {
+      span {
+        font-size: 12px;
+        color: #999;
+        vertical-align: middle;
+      }
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+  .article-con {
+    padding: 15px;
+    background-color: #fff;
+    h1 {
+      margin: 10px 0;
+      font-size: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .article-txt {
+      position: relative;
+      margin: 25px 0;
+      font-size: 15px !important;
+      color: #666;
+      line-height: 28px !important;
+      letter-spacing: 1px !important;
+      .txt-con{
+        // padding-bottom: 30px;
+      }
+      .close{
+        max-height: 800px;
+        overflow: hidden;
+      }
+      .btn-toggle{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        line-height: 30px;
+        font-size: 13px;
+        color: #1d9ff5;
+        text-align: center;
+        background-image: linear-gradient(to top, #fff, rgba(255, 255, 255, 0.6));
+      }
+    }
+    .answer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      border-radius: 5px;
+      border: solid 1px #1d9ff5;
+      img {
+        vertical-align: middle;
+        margin-right: 26px;
+      }
+      span {
+        font-size: 16px;
+        color: #1d9ff5;
+        vertical-align: middle;
+      }
+    }
+  }
+  
+  .comment{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 15px;
+    box-sizing: border-box;
+    max-width: 540px;
+    height: 50px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+    z-index: 12;
+    input{
+      height: 40px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #eee;
+    }
+    input::-webkit-input-placeholder{
+      color: #999;
+      font-size: 18px;
+    }
+    span{
+      margin: 0 11px;
+      font-size: 17px;
+      color: #666;
+    }
+  }
+}

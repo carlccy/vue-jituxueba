@@ -1,0 +1,259 @@
+.channel h1 {
+  text-align: center;
+  line-height: 100px;
+}
+#top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 540px;
+  background-color: #1d9ff5;
+  z-index: 3;
+  #activity{
+    margin: 0 15px;
+  }
+  #search{
+    margin-left: 15px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 5px;
+    img {
+      margin: 0 5px 0 10px;
+      vertical-align: middle;
+    }
+    span {
+      color: #aaa;
+      vertical-align: middle;
+    }
+  }
+  #search input{
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    font-size: 13px;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    border-radius: 16px;
+  }
+  #filter{
+    margin: 0 15px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
+    img{
+      vertical-align: middle;
+    }
+  }
+}
+#nav {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  border-top: 1px solid #eee;
+  background-color: #fff;
+}
+.nav-item{
+  width: 80px !important;
+  text-align: center;
+}
+/* .nav-item.swiper-slide-active span{
+  color: #1d9ff5;
+} */
+#page {
+  width: 100%;
+  height: 100%;
+  // padding-top: 44px;
+}
+.scroll {
+  width: 100%;
+  height: 100%;
+}
+.scroll .swiper-slide{
+  height: auto;
+}
+.scroll-con{
+  padding-bottom: 50px;
+  .login{
+    padding: 100px 0;
+    text-align: center;
+    font-size: 13px;
+    p{
+      margin: 20px 0;
+    }
+    a{
+      display: inline-block;
+      width: 120px;
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+      background: -webkit-linear-gradient(left, #53b0e1, #3b93eb);
+      border-radius: 15px;
+    }
+  }
+}
+.refresh {
+  margin-top: 40px;
+  line-height: 44px;
+  text-align: center;
+  font-size: 13px;
+}
+.loadmore {
+  line-height: 40px;
+  text-align: center;
+  font-size: 13px;
+  img,span{
+    vertical-align: middle;
+  }
+}
+.bar {
+    width:80px;
+    height:2px;
+    position:absolute;
+    bottom:0px;
+}
+.bar .color {
+    width:50px;
+    margin:0 auto;
+    height:3px;
+    background:#1d9ff5;
+}
+.card{
+  margin: 10px auto 30px;
+  line-height: 25px;
+}
+.image{
+  position: relative;
+  width: 100%;
+  padding-bottom: 40%;
+  height: 0;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.filterBox{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 540px;
+  margin: 0 auto;
+  background-color: #fff;
+  transform: translateY(100%);
+  transition: all .5s ease;
+  will-change: transform;
+  z-index: 100;
+
+  p{
+    line-height: 40px;
+    text-align: center;
+    font-size: 15px;
+    color: #666;
+    border-bottom: 1px solid #eee;
+  }
+  p:last-child{
+    border-bottom: none;
+    color: #3b93eb;
+  }
+}
+.show-filter{
+  transform: translateY(0);
+}
+.mark{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 99;
+}
+.goTop{
+  position: fixed;
+  right: 15px;
+  bottom: 100px;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  line-height: 15px;
+  font-size: 12px;
+  text-align: center;
+  color: #666;
+  background-color: #fff;
+  z-index: 5;
+}
+.hot-body{
+  padding: 10px 15px;
+  background: #fff;
+}
+.hot-item {
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 10px 0 rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  .hot-pic {
+    padding-bottom: 40%;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+  }
+  .hot-txt{
+    padding: 0 15px;
+    .hot-title {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #666;
+    }
+    .hot-intro {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #999;
+    }
+    .head_pic {
+      border-radius: 50%;
+    }
+    .hot-actions {
+      display: flex;
+      margin: 10px 0;
+      font-size: 11px;
+      color: #999;
+      align-items: center;
+      img,span{
+        vertical-align: middle;
+      }
+      .hot-left{
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        img{
+          margin-right: 5px;
+        }
+        span{
+          margin-right: 15px;
+        }
+      }
+      .hot-right{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        img{
+          margin-left: 15px;
+        }
+        span{
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

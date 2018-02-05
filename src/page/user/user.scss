@@ -1,0 +1,202 @@
+.content{
+    padding-bottom: 50px;
+}
+.top{
+    padding-bottom: 28px;
+    background-image: linear-gradient(135deg, #1d9ff5, #1d7bf5);
+    .set{
+        padding: 10px 15px;
+        text-align: right;
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    }
+    .login{
+        margin: 0 auto;
+        width: 120px;
+        height: 40px;
+        border-radius: 5px;
+        line-height: 40px;
+        font-size: 17px;
+        color: #fff;
+        text-align: center;
+        background-color: rgba(255,255,255,0.2);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
+        a{
+            color: #fff;
+        }
+    }
+    .login-intro{
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+        margin-top: 14px;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        .user-headpic{
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin: 0 20px;
+            .user-avatar{
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            .user-is-teacher{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 22px;
+                height: 22px;
+                z-index: 2;
+            }
+        }
+        .user-info{
+            flex: 1;
+            .user-name{
+                font-size: 17px;
+                color: #fff;
+            }
+            .user-fans span{
+                margin-top: 10px;
+                font-size: 12px;
+                color: #fff;
+            }
+            .user-homepage{
+                width: 82px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                background-color: rgba(255,255,255,0.1);
+                color: #fffefe;
+                font-size: 12px;
+                border-top-left-radius: 32px;
+                border-bottom-left-radius: 32px;
+            }
+            .user-homepage img{
+                width: 11px;
+            }
+        }
+    }
+}
+
+
+.money{
+    align-items: center;
+    height: 60px;
+    font-size: 15px;
+    color: #333;
+    text-align: center;
+    background-color: #fff;
+}
+.line{
+    width: 1px;
+    height: 15px;
+    background-color: rgba(0,0,0,0.1);
+}
+.money em{
+    font-style: normal;
+}
+.money span{
+    color: #666;
+    margin-right: 5px;
+    font-size: 15px;
+}
+.dot{
+    display: inline-block;
+    position: relative;
+}
+.dot::before{
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #ff4f4f;
+    border-radius: 3px;
+    position: absolute;
+    top: 0px;
+    right: -10px;
+}
+.dots{
+    display: inline-block;
+    position: relative;
+}
+.dots::before{
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #ff4f4f;
+    border-radius: 3px;
+    position: absolute;
+    top: 14px;
+    right: -.1px;
+}
+
+.box{
+    margin-top: 10px;
+    background-color: #fff;
+}
+.list{
+    display: flex;
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
+    align-items: center;
+    background-color: #fff;
+    .list-icon{
+        padding: 0 15px;
+    }
+    .list-name{
+        flex: 1;
+        height: 50px;
+        font-size: 15px;
+        color: #333;
+        border-bottom: 1px solid #eee;
+    }
+    .list-introduce span{
+        color: #999;
+        font-size: 13px;
+        vertical-align: middle;
+    }
+    .icon-enter{
+        vertical-align: middle;
+        padding: 0 15px 0 10px;
+    }
+}
+
+.box box-item:last-child item-name,
+.box box-item:last-child item-introduce{
+    border-bottom: none;
+}
+.tishi{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.7);
+    z-index: 22;
+}
+.tishi img{
+    width: 2.5px;
+    float: right;
+    margin-top: 1.45px;
+    margin-right: 2px;
+}
+
+.sign-out{
+    display: block;
+    margin: 40px auto;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #1d9ff5;
+    color: #fff;
+}

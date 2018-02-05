@@ -1,0 +1,198 @@
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  color: #333;
+  font-weight: normal;
+  font-family: "Microsoft Yahei";
+  box-sizing: border-box;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-font-smoothing: antialiased;
+  /* &:hover{
+      outline: none;
+  } */
+}
+
+img{
+  max-width: 100%;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+  width: 0px;  
+  height: 0px;  
+  background-color: #F5F5F5;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);  
+  border-radius: 10px;  
+  background-color: #F5F5F5;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+  border-radius: 10px;  
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+  background-color: #555;  
+}  
+
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
+  -webkit-appearance: none;
+}
+
+textarea { -webkit-appearance: none;}   
+
+html,body{
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #e2eadb;
+}
+#app {
+  margin: 0 auto;
+  max-width: 540px;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.clear:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.clear{
+  zoom:1;
+}
+
+.back-img{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.div-center{
+  margin: 0 auto;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+
+.flex .flexOne {
+	flex: 1;
+	width: 0; /* 解决配合.one-line只显示一行不生效问题 */
+}
+
+/* .flex i.flexOne,
+.flex span.flexOne,
+.flex input.flexOne,
+.flex select.flexOne,
+.flex i.flexOne::after,
+.flex span.flexOne::after,
+.flex input.flexOne::after,
+.flex select.flexOne::after {
+	display: list-item;
+	list-style: none;
+} */
+
+.one-line {
+	/*单行显示 多出部分显示省略号*/
+	/* display: -webkit-box; */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: break-word;
+}
+
+.two-line {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.three-line {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.divider{
+  display: block;
+  height: 15px;
+}
+.divider-sm{
+  display: block;
+  height: 10px;
+}
+
+.router-fade-enter-active, .router-fade-leave-active {
+  transition: opacity 0.2s;
+  will-change: opacity;
+}
+.router-fade-enter, .router-fade-leave-active {
+  opacity: 0;
+}
+
+.router-slid-enter-active, .router-slid-leave-active {
+  transition: all .4s;
+  will-change: transform,opacity;
+}
+.router-slid-enter, .router-slid-leave-active {
+  transform: translate3d(2rem, 0, 0);
+  opacity: 0;
+}
+
+.router-slideUp-enter-active, .router-slideUp-leave-active {
+  transition: all .4s;
+  will-change: transform,opacity;
+}
+.router-slideUp-enter, .router-slideUp-leave-active {
+  transform: translate3d(0, 50%, 0);
+  opacity: 0;
+}
