@@ -48,8 +48,8 @@
                         <img src="../../images/home/icon_graphic.png" alt="图文" height="11" v-if="item.content_type == 2">
                         <img src="../../images/home/icon_audio.png" alt="音频" height="11" v-if="item.content_type == 3">
                         <span>{{item.channel_name}}</span>
-                        <img class="head_pic" :src="item.head_pic" width="16" height="16" alt="作者">
-                        <span>{{item.user_name}}</span>
+                        <img class="head_pic" :src="item.head_pic?item.head_pic:'images/avater.png'" width="16" height="16" alt="作者">
+                        <span>{{item.user_name?item.user_name:item.realname}}</span>
                       </div>
                       <div class="text-right hot-right">
                         <img src="../../images/home/icon_seen.png" height="10" alt="浏览">
@@ -447,6 +447,7 @@ export default {
     }
   },
   watch: {
+    // 登录后获取我的关注
     token: function(val, oldVal){
       this._getFollow()
     }

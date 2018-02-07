@@ -8,7 +8,7 @@
         </section>
         <section class="teacher flex">
           <div class="avater">
-            <img :src="video.teacher.avatar" width="40" height="40" alt="avater">
+            <img :src="video.teacher.avatar?video.teacher.avatar:'images/avater.png'" width="40" height="40" alt="avater">
             <img v-show="video.teacher.is_teacher == 1" class="v" src="../../images/video/icon_lecturer_small.png" width="20" height="20" alt="v">
           </div>
           <div class="flexOne">
@@ -54,7 +54,9 @@ export default {
   // name: 'video',
   data () {
     return {
-      video: '', // 图文详情
+      video: {
+        teacher: ''
+      }, // 图文详情
       comment_list: '', // 评论列表
       share: true,
       pulldown: true,

@@ -200,6 +200,7 @@
     left: 0;
     right: 0;
     padding: 0 15px;
+    margin: 0 auto;
     box-sizing: border-box;
     max-width: 540px;
     height: 50px;
@@ -207,6 +208,7 @@
     background-color: #fff;
     z-index: 12;
     input{
+      display: list-item;
       height: 40px;
       padding: 10px 15px;
       border: none;
@@ -215,7 +217,7 @@
     }
     input::-webkit-input-placeholder{
       color: #999;
-      font-size: 18px;
+      font-size: 14px;
     }
     span{
       margin: 0 11px;

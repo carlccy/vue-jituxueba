@@ -104,9 +104,11 @@ export default {
   },
   created () {
     this.token && getUser().then(res => {
-        this.user = res.data;
-        console.log(res);
-      });
+      this.user = res.data
+    }).then(() => {this.$forceUpdate()});
+  },
+  mounted () {
+    
   },
   components: {
     jtFooter,

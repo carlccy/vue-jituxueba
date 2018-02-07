@@ -40,7 +40,7 @@
         </section>
         <section class="teacher flex">
           <div class="avater">
-            <img :src="audio.avatar" width="40" height="40" alt="avater">
+            <img :src="audio.avatar?audio.avatar:'images/avater.png'" width="40" height="40" alt="avater">
             <img v-show="audio.is_teacher == 1" class="v" src="../../images/audio/icon_lecturer_small.png" width="20" height="20" alt="v">
           </div>
           <div class="flexOne">
@@ -88,7 +88,9 @@ export default {
   // name: 'audio',
   data () {
     return {
-      audio: '', // 图文详情
+      audio: {
+        voice_msg: ''
+      }, // 图文详情
       comment_list: '', // 评论列表
       share: true,
       pulldown: true,
@@ -118,7 +120,9 @@ export default {
     getAudioDetail(this.token, this.uid, this.$route.params.audio_id).then(res => {
       this.audio = res.data; 
       this.loading = false;
-      this.$nextTick(() => this.init())
+      this.$nextTick(() => {
+        this.init()
+      })
     })
     getCommentList(this.token, this.uid, this.$route.params.audio_id, 3, 1).then(res => this.comment_list = res.data.comment_list)
   },
@@ -128,7 +132,7 @@ export default {
   methods: {
     init: function() {
       const $audio = this.$refs.audio
-      console.log($audio)
+      // console.log($audio)
 
       // $audio.addEventListener('loadedmetadata', () => {
       //   console.log('loadedmetadata')

@@ -48,7 +48,7 @@ export default new Router({
     {
       path: '/channel',
       component: channel,
-      meta: { keepAlive: true },
+      // meta: { keepAlive: true },
       children: [{
         path: 'login',
         component: login

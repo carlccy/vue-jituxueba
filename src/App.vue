@@ -60,4 +60,17 @@
     overflow: auto;
     z-index: 1;
   }
+  .article-con p{
+    margin: 18px 0;
+  }
+  .article-con p span{
+    font-size: 15px !important;
+    color: #3e3e3e;
+    line-height: 28px !important;
+    letter-spacing: 1px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  .article-con img{
+    max-width: 100% !important;
+  }
 </style>

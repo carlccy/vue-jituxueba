@@ -11,7 +11,7 @@
         </section>
         <section class="teacher flex">
           <div class="avater">
-            <img :src="article.head_pic" width="40" height="40" alt="avater">
+            <img :src="article.head_pic?article.head_pic:'images/avater.png'" width="40" height="40" alt="avater">
             <img v-show="article.is_cancel_teacher == 1" class="v" src="../../images/article/icon_lecturer_small.png" width="20" height="20" alt="v">
           </div>
           <div class="flexOne">
@@ -107,6 +107,7 @@ export default {
   },
   mounted () {
     this.showMsg()
+    this.path = this.$route.matched[0].path;
   },
   methods: {
     back: function() {
@@ -121,7 +122,7 @@ export default {
       if(v.type === 1){
         // this.$router.go({path: '/text'})
       }else if(v.type === 2){
-        this.$router.replace({ path: `/article/${v.id}`})
+        this.$router.replace({ path: `${this.path}/article/${v.id}`})
       }else if(v.type === 3){
         // this.$router.go({path: '/text'})
       }

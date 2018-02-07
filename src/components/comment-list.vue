@@ -9,7 +9,7 @@
       <div class="list-item flex" v-for="item in data">
         <img class="item-pic" :src="item.head_pic?item.head_pic: require('../images/logo.png')" width="40" height="40" alt="headpic">
         <div class="item-right flexOne">
-          <p class="flex"><span class="item-name">{{item.nickname}}</span><small class="item-date">{{item.create_time}}</small><span v-show="item.user_id == uid">删除</span></p>
+          <p class="flex"><span class="item-name">{{item.nickname}}</span><small class="item-date flexOne">{{item.create_time}}</small><span class="item-delete" v-show="item.user_id == uid">删除</span></p>
           <p class="item-info">{{item.content}}</p>
         </div>
       </div>
@@ -78,13 +78,12 @@ export default {
           font-size: 15px;
           color: #333;
         }
-        small{
-          flex: 1;
+        .item-date{
           font-size: 12px;
           color: #999;
           margin-left: 15px;
         }
-        span{
+        .item-delete{
           color: #1d9ff5;
           font-size: 13px;
         }
