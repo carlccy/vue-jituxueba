@@ -11,6 +11,9 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
+# if npm run dev error
+npm install node-sass sass-loader -D
+
 # build for production with minification
 npm run build
 
