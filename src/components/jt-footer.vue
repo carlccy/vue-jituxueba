@@ -16,7 +16,7 @@ export default {
     return {
       fData: [
         {name: '首页', path: '/home', defimg: require('../images/footer/icon_home_def.png'), selimg: require('../images/footer/icon_home_sel.png')},
-        {name: '频道', path: '/channel', defimg: require('../images/footer/icon_channel_def.png'), selimg: require('../images/footer/icon_channel_sel.png')},
+        {name: '频道', path: '/channel/0', defimg: require('../images/footer/icon_channel_def.png'), selimg: require('../images/footer/icon_channel_sel.png')},
         // {name: '动态', path: '/dynamic', defimg: require('../images/footer/icon_dynamics_def.png'), selimg: require('../images/footer/icon_dynamics_sel.png')},
         // {name: '商城', path: '/mall', defimg: require('../images/footer/icon_mall_def.png'), selimg: require('../images/footer/icon_mall_sel.png')},
         {name: '我的', path: '/user', defimg: require('../images/footer/icon_user_def.png'), selimg: require('../images/footer/icon_user_sel.png')}

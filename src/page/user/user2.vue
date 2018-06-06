@@ -103,12 +103,11 @@ export default {
     ...mapState(["token", "uid"])
   },
   created () {
+    },
+  mounted () {
     this.token && getUser().then(res => {
       this.user = res.data
-    }).then(() => {this.$forceUpdate()});
-  },
-  mounted () {
-    
+    })
   },
   components: {
     jtFooter,

@@ -38,8 +38,9 @@ export default {
     }
     .back{
       position: absolute;
-      left: 15px;
-      top: 14px;
+      padding: 14px 10px;
+      left: 5px;
+      top: 0;
       cursor: pointer;
     }
     .share{

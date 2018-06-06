@@ -48,7 +48,7 @@
                         <img src="../../images/home/icon_graphic.png" alt="图文" height="11" v-if="item.content_type == 2">
                         <img src="../../images/home/icon_audio.png" alt="音频" height="11" v-if="item.content_type == 3">
                         <span>{{item.channel_name}}</span>
-                        <img class="head_pic" :src="item.head_pic?item.head_pic:'images/avater.png'" width="16" height="16" alt="作者">
+                        <img class="head_pic" :src="item.head_pic?item.head_pic:require('../../images/avater.png')" width="16" height="16" alt="作者">
                         <span>{{item.user_name?item.user_name:item.realname}}</span>
                       </div>
                       <div class="text-right hot-right">
@@ -182,6 +182,11 @@ export default {
     }
   },
   async beforeMount () {
+    },
+  async mounted() {
+    const _index = this.$route.params.index;
+    this.currentIndex = _index;
+
     // 获取频道列表数据后初始化navSwiper
     await getChannelList().then((res) => {
       this.navs = [{id: 0, name: '我的关注', url: 'icon'}, ...res.data]
@@ -204,26 +209,32 @@ export default {
       this.pageSwiper.slideTo(1, 300, false);
       this.reachEndAble = true;
     }) */
-  },
-  mounted() {
-    // 后去登陆信息后，获取我的关注
-    // this.pageSwiper.slideTo(1, 1000, false);
-    this.getToken().then(() => {
-      if(this.token) {
-        getMyFollow(this.token, this.uid, 0, 1)
-        .then((res) => this._setData(res)).then(() => this.$forceUpdate()).then(() => {
-          // current swiper instance
-          // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-          this.pageSwiper.slideTo(0, 1000, false)
-          this.navSwiper.slideTo(0, 1000, false)
-          this.scrollSwiper[this.currentIndex].swiper.lazy.load() // 延时加载的图片 启动加载
+    
+    .then(() => {
+      // 后去登陆信息后，获取我的关注
+      // this.pageSwiper.slideTo(1, 1000, false);
+      this.getToken().then(() => {
+        if(this.token) {
+          getMyFollow(this.token, this.uid, 0, 1)
+          .then((res) => this._setData(res)).then(() => this.$forceUpdate()).then(() => {
+            // current swiper instance
+            // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+            this.pageSwiper.slideTo(0, 1000, false)
+            this.navSwiper.slideTo(0, 1000, false)
+            this.scrollSwiper[0].swiper.lazy.load() // 延时加载的图片 启动加载
+            this.reachEndAble = true;
+            this.loading = false;
+          })
+        }else{
+          console.log(_index)
+
+          this.pageSwiper.slideTo(_index, 1000, false)
+          this.navSwiper.slideTo(_index, 1000, false)
+          this.scrollSwiper[_index].swiper.lazy.load() // 延时加载的图片 启动加载
           this.reachEndAble = true;
           this.loading = false;
-        })
-      }else{
-        this.reachEndAble = true;
-        this.loading = false;
-      }
+        }
+      })
     })
   },
   methods: {
@@ -403,6 +414,7 @@ export default {
         if(this.currentIndex === 0){
           this.token && getMyFollow(this.token, this.uid, this.filtered, 1)
           .then((res) => {
+            this.scrollData[this.currentIndex].content = []
             this._setData(res)
             this.loadmoreEnd = true
             this._goTop()
@@ -412,6 +424,7 @@ export default {
         }else{
           getChannelDetail(this.token, this.uid, this.currentChannelId, this.filtered, 1)
           .then((res) => {
+            this.scrollData[this.currentIndex].content = []
             this._setData(res)
             this.loadmoreEnd = true
             this._goTop()

@@ -11,7 +11,7 @@
         </section>
         <section class="teacher flex">
           <div class="avater">
-            <img :src="article.head_pic?article.head_pic:'images/avater.png'" width="40" height="40" alt="avater">
+            <img :src="article.head_pic?article.head_pic:require('../../images/avater.png')" width="40" height="40" alt="avater">
             <img v-show="article.is_cancel_teacher == 1" class="v" src="../../images/article/icon_lecturer_small.png" width="20" height="20" alt="v">
           </div>
           <div class="flexOne">

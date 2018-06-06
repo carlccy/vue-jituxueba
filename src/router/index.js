@@ -23,7 +23,7 @@ const login = () => import('@/page/login/login')
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   // mode: 'history',
   routes: [
     {
@@ -33,6 +33,7 @@ export default new Router({
     {
       path: '/home',
       component: home,
+      meta: { keepAlive: true },
       children: [{
         path: 'article/:text_id',
         component: article
@@ -46,9 +47,9 @@ export default new Router({
       }]
     },
     {
-      path: '/channel',
+      path: '/channel/:index',
       component: channel,
-      // meta: { keepAlive: true },
+      meta: { keepAlive: true },
       children: [{
         path: 'login',
         component: login
@@ -91,6 +92,9 @@ export default new Router({
     {
       path: '/user',
       component: user,
+      meta: {
+        requireAuth: true,
+      },
       children: [{
         path: 'login',
         component: login
@@ -123,3 +127,25 @@ export default new Router({
     }
   ]
 })
+
+
+router.beforeEach((to, from, next) => {
+  // const token = getStore('userToken')
+  const token = true
+  if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
+    if (token) {  // 通过vuex state获取当前的token是否存在
+      next();
+    }
+    else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
+  }
+  else {
+    next();
+  }
+})
+
+export default router

@@ -4,11 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+// import VueLazyload from 'vue-lazyload'
 
-import VueAwesomeSwiper from 'vue-awesome-swiper'
+// Vue.use(VueLazyload)
+
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
+// Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.config.productionTip = false
 

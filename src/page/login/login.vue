@@ -10,7 +10,6 @@
       <div class="input-group">
         <img class="input-img" src="../../images/login/icon_password.png" width="13" height="16" alt="password">
         <input type="password" v-model="password" @keyup.enter="login" placeholder="请输入密码">
-        <span class="input-"></span>
       </div>
       <p class="text-right">验证码登录</p>
       <button type="button" class="btn-login" @click="login">立即登录</button>

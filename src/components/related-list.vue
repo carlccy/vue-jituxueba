@@ -112,6 +112,9 @@ export default {
           margin-top: 5px;
           font-size: 14px;
           color: #999;
+          line-height: 19px;
+          max-height: 38px;
+          overflow: hidden;
           @include limit(2);
         }
         .actions{

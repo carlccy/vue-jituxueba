@@ -8,7 +8,7 @@
         </section>
         <section class="teacher flex">
           <div class="avater">
-            <img :src="video.teacher.avatar?video.teacher.avatar:'images/avater.png'" width="40" height="40" alt="avater">
+            <img :src="video.teacher.avatar?video.teacher.avatar:require('../../images/avater.png')" width="40" height="40" alt="avater">
             <img v-show="video.teacher.is_teacher == 1" class="v" src="../../images/video/icon_lecturer_small.png" width="20" height="20" alt="v">
           </div>
           <div class="flexOne">

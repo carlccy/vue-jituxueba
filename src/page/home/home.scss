@@ -209,7 +209,11 @@
         .txt-con{
           margin: 10px 0 17px;
           font-size: 14px;
+          line-height: 19px;
+          height: 57px;
+          max-height: 57px;
           color: #999;
+          overflow: hidden;
         }
         .actions{
           display: flex;

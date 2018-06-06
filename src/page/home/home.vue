@@ -6,7 +6,7 @@
       <img class="top-img" src="../../images/home/icon_message.png" width="18" height="22" alt="message">
     </header>
 
-    <scroll :pullup="pullup" :pulldown="pulldown" @pulldown="loadData" @pullup="loadMore"> 
+    <scroll :pullup="pullup" :pulldown="pulldown" @pulldown="loadData" @pullup="loadMore" :data="todayRecommand"> 
       <div class="content">
         <swiper :options="bannerOptions" ref="myBanner" id="banner">
           <swiper-slide v-for="item in banners" :key="item.name" class="banner-item">
@@ -16,25 +16,25 @@
         </swiper>
 
         <nav class="nav-list">
-          <div class="nav-item" @click="toChannel(50)">
+          <div class="nav-item" @click="toChannel(1)">
             <div class="nav-img">
               <img src="../../images/home/icon_c_story.png" width="100%" alt="国学故事">
             </div>
             <p>国学故事</p>
           </div>
-          <div class="nav-item" @click="toChannel(51)">
+          <div class="nav-item" @click="toChannel(2)">
             <div class="nav-img">
               <img src="../../images/home/icon_c_keep.png" width="100%" alt="国医养生">
             </div>
             <p>国医养生</p>
           </div>
-          <div class="nav-item" @click="toChannel(52)">
+          <div class="nav-item" @click="toChannel(3)">
             <div class="nav-img">
               <img src="../../images/home/icon_happy_post.png" width="100%" alt="快乐驿站">
             </div>
             <p>快乐驿站</p>
           </div>
-          <div class="nav-item" @click="toChannel(53)">
+          <div class="nav-item" @click="toChannel(4)">
             <div class="nav-img">
               <img src="../../images/home/icon_read.png" width="100%" alt="读书会">
             </div>
@@ -130,7 +130,7 @@
                     <img src="../../images/home/icon_graphic.png" alt="图文" height="11" v-if="item.content_type == 2">
                     <img src="../../images/home/icon_audio.png" alt="音频" height="11" v-if="item.content_type == 3">
                     <span>{{item.channel_name}}</span>
-                    <img class="head_pic" :src="item.head_pic?item.head_pic:'images/avater.png'" width="16" height="16" alt="作者">
+                    <img class="head_pic" :src="item.head_pic?item.head_pic: require('../../images/avater.png')" width="16" height="16" alt="作者">
                     <span>{{item.user_name}}</span>
                   </div>
                   <div class="text-right hot-right">
@@ -156,8 +156,9 @@
 
 <script>
 import jtFooter from '@/components/jt-footer'
-import { getBannerList, getHotContentList } from '@/service/getData'
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 import scroll from "@/components/scroll"
+import { getBannerList, getHotContentList } from '@/service/getData'
 
 export default {
   name: 'home',
@@ -181,9 +182,9 @@ export default {
         pagination: {
           el: '.swiper-pagination'
         },
-        lazy: {
-          loadPrevNext: true,
-        },
+        // lazy: {
+        //   loadPrevNext: true,
+        // },
       },
       pulldown: true,
       pullup: true,
@@ -191,7 +192,9 @@ export default {
   },
   components: {
     jtFooter,
-    scroll
+    scroll,
+    swiper,
+    swiperSlide
   },
   mounted () {
     getBannerList().then((res) => this.banners = res.data)
@@ -203,8 +206,8 @@ export default {
   computed: {
   },
   methods: {
-    toChannel () {
-      
+    toChannel (n) {
+      this.$router.push({ path: `channel/${n}`})
     },
     toHot (v) {
       if(v.content_type === 1) {
@@ -232,7 +235,7 @@ export default {
       console.log('loadData')
     },
     goBanner: function(v){
-      window.location.href = v.link;
+      // window.location.href = v.link;
     }
   }
 }

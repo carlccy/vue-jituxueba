@@ -40,7 +40,7 @@
         </section>
         <section class="teacher flex">
           <div class="avater">
-            <img :src="audio.avatar?audio.avatar:'images/avater.png'" width="40" height="40" alt="avater">
+            <img :src="audio.avatar?audio.avatar:require('../../images/avater.png')" width="40" height="40" alt="avater">
             <img v-show="audio.is_teacher == 1" class="v" src="../../images/audio/icon_lecturer_small.png" width="20" height="20" alt="v">
           </div>
           <div class="flexOne">
