@@ -61,7 +61,7 @@ export default {
       share: true,
       pulldown: true,
       pullup: true,
-      loading: true
+      loading: false
     }
   },
   components: {
@@ -74,8 +74,11 @@ export default {
     ...mapState(["token", "uid"])
   },
   created () {
+    this.loading = true;
     getVideoDetail(this.uid, this.$route.params.video_id).then(res => {this.video = res.data; this.loading = false;})
-    getCommentList(this.token, this.uid, this.$route.params.video_id, 1, 1).then(res => this.comment_list = res.data.comment_list)
+    getCommentList(this.token, this.uid, this.$route.params.video_id, 1, 1).then(res => {
+      if(res.code == 200) { this.comment_list = res.data.comment_list }
+    })
   },
   methods: {
     /* back: function() {

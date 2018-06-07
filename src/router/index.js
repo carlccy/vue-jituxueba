@@ -2,28 +2,41 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 懒加载
-const App = () => import('@/App')
-const home = () => import('@/page/home/home')
-const channel = () => import('@/page/channel/channel.2')
-const article = () => import('@/page/article/article')
-const video = () => import('@/page/video/video')
-const audio = () => import('@/page/audio/audio')
-const mall = () => import('@/page/mall/mall')
-const cart = () => import('@/page/cart/cart')
-const dynamic = () => import('@/page/dynamic/dynamic')
-const user = () => import('@/page/user/user2')
-const goods = () => import('@/page/goods/goods')
-const confirmOrder = () => import('@/page/confirmOrder/confirmOrder')
-const invoice = () => import('@/page/confirmOrder/children/invoice')
-const coupon = () => import('@/page/confirmOrder/children/coupon')
-const chooseAddress = () => import('@/page/confirmOrder/children/chooseAddress')
-const addAddress = () => import('@/page/confirmOrder/children/children/addAddress')
-const editAddress = () => import('@/page/confirmOrder/children/children/editAddress')
-const login = () => import('@/page/login/login')
+// const home = () => import('@/page/home/home')
+// const channel = () => import('@/page/channel/channel.2')
+
+const home = r => require.ensure([], () => r(require('@/page/home/home')), 'home')
+const channel = r => require.ensure([], () => r(require('@/page/channel/channel.2')), 'channel')
+
+// const article = () => import('@/page/article/article')
+// const video = () => import('@/page/video/video')
+// const audio = () => import('@/page/audio/audio')
+
+const article = r => require.ensure([], () => r(require('@/page/article/article')), 'content-group')
+const video = r => require.ensure([], () => r(require('@/page/video/video')), 'content-group')
+const audio = r => require.ensure([], () => r(require('@/page/audio/audio')), 'content-group')
+
+// const user = () => import('@/page/user/user2')
+// const login = () => import('@/page/login/login')
+
+const user = r => require.ensure([], () => r(require('@/page/user/user2')), 'user-group')
+const login = r => require.ensure([], () => r(require('@/page/login/login')), 'user-group')
+
+// const mall = () => import('@/page/mall/mall')
+// const cart = () => import('@/page/cart/cart')
+// const dynamic = () => import('@/page/dynamic/dynamic')
+// const goods = () => import('@/page/goods/goods')
+// const confirmOrder = () => import('@/page/confirmOrder/confirmOrder')
+// const invoice = () => import('@/page/confirmOrder/children/invoice')
+// const coupon = () => import('@/page/confirmOrder/children/coupon')
+// const chooseAddress = () => import('@/page/confirmOrder/children/chooseAddress')
+// const addAddress = () => import('@/page/confirmOrder/children/children/addAddress')
+// const editAddress = () => import('@/page/confirmOrder/children/children/editAddress')
+
 
 Vue.use(Router)
 
-const router =  new Router({
+const router = new Router({
   // mode: 'history',
   routes: [
     {
@@ -33,11 +46,11 @@ const router =  new Router({
     {
       path: '/home',
       component: home,
-      meta: { keepAlive: true },
+      // meta: { keepAlive: true },
       children: [{
         path: 'article/:text_id',
         component: article
-      },{
+      }, {
         path: 'video/:video_id',
         component: video
       },
@@ -49,14 +62,14 @@ const router =  new Router({
     {
       path: '/channel/:index',
       component: channel,
-      meta: { keepAlive: true },
+      // meta: { keepAlive: true },
       children: [{
         path: 'login',
         component: login
-      },{
+      }, {
         path: 'article/:text_id',
         component: article
-      },{
+      }, {
         path: 'video/:video_id',
         component: video
       },
@@ -78,6 +91,18 @@ const router =  new Router({
       component: audio
     },
     {
+      path: '/user',
+      component: user,
+      meta: {
+        requireAuth: true,
+      },
+      children: [{
+        path: 'login',
+        component: login
+      }]
+    },
+
+    /* {
       path: '/mall',
       component: mall
     },
@@ -88,17 +113,6 @@ const router =  new Router({
     {
       path: '/dynamic',
       component: dynamic
-    },
-    {
-      path: '/user',
-      component: user,
-      meta: {
-        requireAuth: true,
-      },
-      children: [{
-        path: 'login',
-        component: login
-      }]
     },
     {
       path: '/goods/:goods_id',
@@ -124,7 +138,7 @@ const router =  new Router({
           component: editAddress
         }]
       }]
-    }
+    } */
   ]
 })
 

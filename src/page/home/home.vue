@@ -151,20 +151,23 @@
       </transition>
     </scroll>
     <jt-footer active="首页"></jt-footer>
+    <loading :show="loading"></loading>
   </div>
 </template>
 
 <script>
 import jtFooter from '@/components/jt-footer'
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+// import { swiper, swiperSlide } from "vue-awesome-swiper";
 import scroll from "@/components/scroll"
 import { getBannerList, getHotContentList } from '@/service/getData'
+import loading from "@/components/loading";
 
 export default {
   name: 'home',
   data () {
     return {
       msg: 'welcome to',
+      loading: false,
       banners: '',
       bannerOptions: {},
       hotContentList: '',
@@ -193,15 +196,20 @@ export default {
   components: {
     jtFooter,
     scroll,
-    swiper,
-    swiperSlide
+    // swiper,
+    // swiperSlide,
+    loading
   },
-  mounted () {
+  created () {
+    this.loading = true
     getBannerList().then((res) => this.banners = res.data)
     getHotContentList().then((res) => {
       this.hotContentList = res.data.list
       this.todayRecommand = [...res.data.list].splice(0, 3)
+      this.loading = false
     })
+  },
+  mounted () {
   },
   computed: {
   },

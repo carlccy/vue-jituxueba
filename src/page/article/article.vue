@@ -76,7 +76,7 @@ export default {
       share: true,
       pulldown: true,
       pullup: true,
-      loading: true
+      loading: false
     }
   },
   components: {
@@ -93,13 +93,14 @@ export default {
     },
   },
   created () {
+    this.loading = true;
     getTextDetail(this.token, this.uid, this.$route.params.text_id).then(res => {this.article = res.data; this.loading = false;})
     getCommentList(this.token, this.uid, this.$route.params.text_id, 2, 1).then(res => this.comment_list = res.data.comment_list)
     getRecommendContent(this.$route.params.text_id, 2).then(res => this.recommend_list = res.data)
   },
   beforeRouteUpdate (to, from, next) {
     console.log(this)
-    this.close = false;
+    this.close = true;
     this.loading = true;
     getTextDetail(this.token, this.uid, to.params.text_id).then(res => {this.article = res.data; this.showMsg(); this.loading = false;})
     getCommentList(this.token, this.uid, to.params.text_id, 2, 1).then(res => this.comment_list = res.data.comment_list)
@@ -139,6 +140,7 @@ export default {
         console.log($height)
         if($height <= 800){
           this.show = false
+          this.close = true
         }else{
           this.close = true
           this.show = true

@@ -95,7 +95,7 @@ export default {
       share: true,
       pulldown: true,
       pullup: true,
-      loading: true,
+      loading: false,
       audioDom: null,
       playing: false, // 正在播放
       currentTime: 0,
@@ -117,6 +117,7 @@ export default {
     // }
   },
   created () {
+    this.loading = true;
     getAudioDetail(this.token, this.uid, this.$route.params.audio_id).then(res => {
       this.audio = res.data; 
       this.loading = false;

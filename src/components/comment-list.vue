@@ -70,6 +70,7 @@ export default {
         margin-right: 15px;
         align-self: flex-start;
         border-radius: 50%;
+        overflow: hidden;
       }
       .item-right{
         padding: 15px 0;

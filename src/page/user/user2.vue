@@ -109,6 +109,12 @@ export default {
       this.user = res.data
     })
   },
+  beforeRouteUpdate (to, from, next) {
+    this.token && getUser().then(res => {
+      this.user = res.data
+    })
+    next()
+  },
   components: {
     jtFooter,
     scroll

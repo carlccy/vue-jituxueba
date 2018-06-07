@@ -90,14 +90,14 @@
 import jtHeader from "@/components/jt-header";
 import loading from "@/components/loading";
 import jtFooter from "@/components/jt-footer";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+// import { swiper, swiperSlide } from "vue-awesome-swiper";
 import { getChannelList, getMyFollow, getChannelDetail } from '@/service/getData'
 import {mapState, mapMutations, mapActions} from 'vuex'
 export default {
   name: "channel",
   data() {
     return {
-      loading: true,
+      loading: false,
       navs: null, //nav数据
       scrolls: null, // 渲染scroll的空列表
       scrollData: [], // 列表主要的数据
@@ -158,8 +158,8 @@ export default {
     jtHeader,
     jtFooter,
     loading,
-    swiper,
-    swiperSlide
+    // swiper,
+    // swiperSlide
   },
   computed: {
     ...mapState([
@@ -181,8 +181,9 @@ export default {
       return this.scrollData[this.currentIndex].page
     }
   },
-  async beforeMount () {
-    },
+  created () {
+    this.loading = true
+  },
   async mounted() {
     const _index = this.$route.params.index;
     this.currentIndex = _index;
@@ -219,8 +220,8 @@ export default {
           .then((res) => this._setData(res)).then(() => this.$forceUpdate()).then(() => {
             // current swiper instance
             // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-            this.pageSwiper.slideTo(0, 1000, false)
-            this.navSwiper.slideTo(0, 1000, false)
+            this.pageSwiper.slideTo(0, 100, false)
+            this.navSwiper.slideTo(0, 100, false)
             this.scrollSwiper[0].swiper.lazy.load() // 延时加载的图片 启动加载
             this.reachEndAble = true;
             this.loading = false;
@@ -228,8 +229,8 @@ export default {
         }else{
           console.log(_index)
 
-          this.pageSwiper.slideTo(_index, 1000, false)
-          this.navSwiper.slideTo(_index, 1000, false)
+          this.pageSwiper.slideTo(_index, 100, false)
+          this.navSwiper.slideTo(_index, 100, false)
           this.scrollSwiper[_index].swiper.lazy.load() // 延时加载的图片 启动加载
           this.reachEndAble = true;
           this.loading = false;
