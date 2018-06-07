@@ -1,6 +1,6 @@
 # vue2-jituxueba
 
-> A Vue.js project
+> es6+vue全家桶+axios+mint-ui+vue-awesome-swiper+better-scroll+sass+webpack 
 
 ## Build Setup
 
