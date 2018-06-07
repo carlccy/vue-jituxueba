@@ -1,4 +1,4 @@
-# vue2-template-2.9.2
+# vue2-jituxueba
 
 > A Vue.js project
 
