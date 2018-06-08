@@ -1,13 +1,11 @@
+// all swiper
 <template>
   <div class="page channel">
-    <jt-header go-back="0">
-    </jt-header>
     <div id="top">
       <div class="flex">
-        <div id="search" class="flexOne">
-          <input type="text" placeholder="搜索学习">
-        </div>
-        <div id="filter" @click="doFilter">筛选</div>
+        <!-- <img id="activity" src="../../images/logo.png" width="22px" alt=""> -->
+        <div id="search" class="flexOne"><img src="../../images/channel/icon_search.png" width="14px" height="14px"><span>搜索课程</span></div>
+        <div id="filter" @click="doFilter">筛选<!-- <img src="../../images/channel/icon_filter.png" width="14" height="14" alt=""> --></div>
       </div>
       <swiper :options="navOptions" ref="myNav" id="nav">
         <swiper-slide v-for="navItem in navs" :key="navItem.id" class="nav-item">
@@ -23,60 +21,57 @@
       <swiper-slide v-for="(pageItem, index) in scrolls" :key="pageItem">
         <swiper :options="scrollOption" ref="myScroll" class="scroll" :scrollIndex="index">
           <swiper-slide>
-            <div class="refresh">下拉刷新</div>
-            <div class="login" v-show="!token && index === 0">
-              <img src="../../images/logo.png" width="100px" alt="logo">
-              <p>登录后可查看已关注内容</p>
-              <a class="go-login" @click="SHOW_LOGIN">点击登录</a>
-            </div>
-            <!-- <div class="card" v-for="(item, index) in scrollData[index].content">
-              <div :data-background="item.image_path" class="swiper-lazy image">
-                <div class="swiper-lazy-preloader"></div>
+            <div class="scroll-con">
+              <div class="refresh">下拉刷新</div>
+              <div class="login" v-show="!token && index === 0">
+                <img src="../../images/logo.png" width="100px" alt="logo">
+                <p>登录后可查看已关注内容</p>
+                <router-link to="channel/login" class="go-login">点击登录</router-link>
               </div>
-              <div class="image">
-                <img :data-src="item.image_path" class="swiper-lazy" width="100%" :alt="item.content_name">
-              </div>
-              <p><strong>课程{{index + 1}}:</strong> {{item.content_name}}</p>
-              <p>{{item.channel_name}}</p>
-            </div> -->
-            <div class="recommend-item" v-for="item in scrollData[index].content" @click="toHot(item)">
-              <div class="image-path">
-                <img :src="item.image_path" alt="" width="100%">
-              </div>
-              <!-- <div :data-background="item.image_path" class="swiper-lazy image-path">
-                <div class="swiper-lazy-preloader"></div>
-              </div> -->
-              <p class="item-title inlineShow">
-                {{item.content_name}}
-              </p>
-              <p class="item-intro two-line" v-html="item.introduce">
-              </p>
-              <div class="btns flex">
-                <div class="text-left btn-left flexOne">
-                  <img src="../../images/home/icon_video.png" alt="视频" v-if="item.content_type == 1">
-                  <img src="../../images/home/icon_graphic.png" alt="图文" v-if="item.content_type == 2">
-                  <img src="../../images/home/icon_audio.png" alt="音频" v-if="item.content_type == 3">
-                  <span>{{item.channel_name}}</span>
-                  <img class="head_pic" :src="item.head_pic" alt="作者">
-                  <span>{{item.user_name}}</span>
-                </div>
-                <div class="text-right btn-right">
-                  <img src="../../images/home/icon_seen.png" alt="浏览">
-                  <span>{{item.look_count}}</span>
-                  <img src="../../images/home/icon_comment.png" alt="评论">
-                  <span>{{item.comment_count}}</span>
+              <div class="hot-body" v-show="index >= 1 || token">
+                <div class="hot-item" v-for="item in scrollData[index].content" @click="_goDetail(item)" :class="{true:'answerd'}[item.answer_status == 2]">
+                  <div class="hot-pic">
+                    <img :src="item.image_path" alt="" width="100%">
+                  </div>
+                  <!-- <div :data-background="item.image_path" class="swiper-lazy image-path">
+                    <div class="swiper-lazy-preloader"></div>
+                  </div> -->
+                  <div class="hot-txt">
+                    <p class="hot-title inlineShow">
+                      {{item.content_name}}
+                    </p>
+                    <p class="hot-intro two-line" v-html="item.introduce">
+                    </p>
+                    <div class="hot-actions">
+                      <div class="text-left hot-left flexOne">
+                        <img src="../../images/home/icon_video.png" alt="视频" height="11" v-if="item.content_type == 1">
+                        <img src="../../images/home/icon_graphic.png" alt="图文" height="11" v-if="item.content_type == 2">
+                        <img src="../../images/home/icon_audio.png" alt="音频" height="11" v-if="item.content_type == 3">
+                        <span>{{item.channel_name}}</span>
+                        <img class="head_pic" :src="item.head_pic?item.head_pic:require('../../images/avater.png')" width="16" height="16" alt="作者">
+                        <span>{{item.user_name?item.user_name:item.realname}}</span>
+                      </div>
+                      <div class="text-right hot-right">
+                        <img src="../../images/home/icon_seen.png" height="10" alt="浏览">
+                        <span>{{item.look_count}}</span>
+                        <img src="../../images/home/icon_comment.png" height="10" alt="评论">
+                        <span>{{item.comment_count}}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="loadmore" v-if="scrollData[index].noMore">已加载全部</div>
+              <div class="loadmore" v-if="!scrollData[index].noMore && !(index == 0 && !token)"><img src="../../images/refresh.gif" width="20" height="20"><span>正在加载中…</span></div>
             </div>
-            <div class="loadmore" v-if="scrollData[index].noMore">已加载全部</div>
-            <div class="loadmore" v-if="!scrollData[index].noMore && !(index == 0 && !token)"><img src="../../images/refresh.gif" width="20px;">loading</div>
           </swiper-slide>
         </swiper>
       </swiper-slide>
     </swiper>
     <!-- <jt-footer></jt-footer> -->
-    <div class="mark" v-show="openFilter"></div>
+    <div class="mark" v-show="openFilter" @click="cancelFilter"></div>
     <div class="filterBox" :class="{true:'show-filter'}[openFilter]">
+      <p @click="setFilter(0)">全部</p>
       <p @click="setFilter(1)">只看视频</p>
       <p @click="setFilter(3)">只看音频</p>
       <p @click="setFilter(2)">只看图文</p>
@@ -84,21 +79,25 @@
     </div>
     <a class="goTop" @click="_goTop" v-show="showGoTop">回到顶部</a>
     <jt-footer active="频道"></jt-footer>
-    <login @logged="_getFollow"></login>
+    <loading :show="loading"></loading>
+    <transition name="router-slid" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 import jtHeader from "@/components/jt-header";
+import loading from "@/components/loading";
 import jtFooter from "@/components/jt-footer";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
-import { getChannelList, getBanner, getHotContentList, getMyFollow, getChannelDetail } from '@/service/getData'
+// import { swiper, swiperSlide } from "vue-awesome-swiper";
+import { getChannelList, getMyFollow, getChannelDetail } from '@/service/getData'
 import {mapState, mapMutations, mapActions} from 'vuex'
-import login from '@/components/login'
 export default {
   name: "channel",
   data() {
     return {
+      loading: false,
       navs: null, //nav数据
       scrolls: null, // 渲染scroll的空列表
       scrollData: [], // 列表主要的数据
@@ -158,9 +157,9 @@ export default {
   components: {
     jtHeader,
     jtFooter,
-    swiper,
-    swiperSlide,
-    login
+    loading,
+    // swiper,
+    // swiperSlide
   },
   computed: {
     ...mapState([
@@ -182,10 +181,16 @@ export default {
       return this.scrollData[this.currentIndex].page
     }
   },
-  async beforeMount () {
+  created () {
+    this.loading = true
+  },
+  async mounted() {
+    const _index = this.$route.params.index;
+    this.currentIndex = _index;
+
     // 获取频道列表数据后初始化navSwiper
     await getChannelList().then((res) => {
-      this.navs = [{id: 0, name: '我的关注', url: 'follow'}, {id: 1, name: '热门推荐', url: 'hot'}, ...res.data]
+      this.navs = [{id: 0, name: '我的关注', url: 'icon'}, ...res.data]
       this.scrolls = new Array(this.navs.length)
       for(let i=0;i<this.navs.length;i++){
         this.scrollInitData[i] = {
@@ -201,27 +206,39 @@ export default {
     }).then(() => this.navSwiperInit()) // 初始化navSwiper
 
     // 不能放入mounted中，beforeMount和mounted并不是同步执行
-    this.getToken().then(() => {
+    /* this.getToken().then(() => {
       this.pageSwiper.slideTo(1, 300, false);
       this.reachEndAble = true;
+    }) */
+    
+    .then(() => {
+      // 后去登陆信息后，获取我的关注
+      // this.pageSwiper.slideTo(1, 1000, false);
+      this.getToken().then(() => {
+        if(this.token) {
+          getMyFollow(this.token, this.uid, 0, 1)
+          .then((res) => this._setData(res)).then(() => this.$forceUpdate()).then(() => {
+            // current swiper instance
+            // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+            this.pageSwiper.slideTo(0, 100, false)
+            this.navSwiper.slideTo(0, 100, false)
+            this.scrollSwiper[0].swiper.lazy.load() // 延时加载的图片 启动加载
+            this.reachEndAble = true;
+            this.loading = false;
+          })
+        }else{
+          console.log(_index)
+
+          this.pageSwiper.slideTo(_index, 100, false)
+          this.navSwiper.slideTo(_index, 100, false)
+          this.scrollSwiper[_index].swiper.lazy.load() // 延时加载的图片 启动加载
+          this.reachEndAble = true;
+          this.loading = false;
+        }
+      })
     })
   },
-  mounted() {
-    // 后去登陆信息后，获取我的关注
-    /* this.getToken().then(() => this.token && getMyFollow(this.token, this.uid, 0, 1)
-    .then((res) => this._setData(res)).then(() => this.$forceUpdate()).then(() => {
-      // current swiper instance
-      // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-      this.pageSwiper.slideTo(0, 1000, false);
-      this.navSwiper.slideTo(0, 1000, false);
-      this.scrollSwiper[this.currentIndex].swiper.lazy.load() // 延时加载的图片 启动加载
-      this.reachEndAble = true;
-    })) */
-  },
   methods: {
-    ...mapMutations([
-      'SHOW_LOGIN'
-    ]),
     ...mapActions([
       'getToken'
     ]),
@@ -281,10 +298,6 @@ export default {
           this.token && getMyFollow(this.token, this.uid, 0, 1)
           .then((res) => this.scrollData[0].content = [...res.data.list]).then(() => this.$forceUpdate())
           .then(() => this.scrollSwiper[this.currentIndex].swiper.lazy.load())
-        }else if(this.currentIndex === 1){
-          getHotContentList()
-          .then((res) => this.scrollData[1].content = [...res.data.list]).then(() => this.$forceUpdate())
-          .then(() => this.scrollSwiper[this.currentIndex].swiper.lazy.load())
         }else{
           getChannelDetail(this.token, this.uid, this.currentChannelId, this.filtered, this.currentChannelPage)
           .then((res) => this._setData(res)).then(() => this.$forceUpdate())
@@ -330,15 +343,6 @@ export default {
             $scroll.setTranslate(0)
             $scroll.allowTouchMove = true
           }
-        }else if(this.currentIndex === 1){
-          getHotContentList()
-          .then((res) => this._setData(res)).then(() => {
-            this.$forceUpdate()
-            refreshText.html("刷新完成")
-            this.refreshEnd = true
-            $scroll.setTranslate(0)
-            $scroll.allowTouchMove = true
-          })
         }else{
           getChannelDetail(this.token, this.uid, this.currentChannelId, this.filtered, 1)
           .then((res) => this._setData(res)).then(() => {
@@ -366,9 +370,6 @@ export default {
         this.showGoTop = false
       }
     },
-    /* _getMore: function() {
-      this._getMore()
-    }, */
     _setData: function(res) { // 将数据加入数据列表
       this.scrollData[this.currentIndex].content.push(...res.data.list)
       if(res.data.list.length < 10){
@@ -378,18 +379,13 @@ export default {
       }
     },
     scrollReachEnd: function() {
+      // token改变这个也会触发 ...
       if(this.reachEndAble){
         this.loadmoreEnd = false
         this.scrollData[this.currentIndex].page++
         if(!this.loadmoreEnd){
           if(this.currentIndex === 0){
             this.token && getMyFollow(this.token, this.uid, this.filtered, this.scrollData[this.currentIndex].page)
-            .then((res) => this._setData(res)).then(() => {
-              this.loadmoreEnd = true
-              this.$forceUpdate()
-            })
-          }else if(this.currentIndex === 1){
-            getHotContentList(this.scrollData[this.currentIndex].page)
             .then((res) => this._setData(res)).then(() => {
               this.loadmoreEnd = true
               this.$forceUpdate()
@@ -419,15 +415,7 @@ export default {
         if(this.currentIndex === 0){
           this.token && getMyFollow(this.token, this.uid, this.filtered, 1)
           .then((res) => {
-            this._setData(res)
-            this.loadmoreEnd = true
-            this._goTop()
-          })
-          .then(() => this.$forceUpdate())
-          .then(() => this.scrollSwiper[this.currentIndex].swiper.lazy.load())
-        }else if(this.currentIndex === 1){
-          getHotContentList()
-          .then((res) => {
+            this.scrollData[this.currentIndex].content = []
             this._setData(res)
             this.loadmoreEnd = true
             this._goTop()
@@ -437,6 +425,7 @@ export default {
         }else{
           getChannelDetail(this.token, this.uid, this.currentChannelId, this.filtered, 1)
           .then((res) => {
+            this.scrollData[this.currentIndex].content = []
             this._setData(res)
             this.loadmoreEnd = true
             this._goTop()
@@ -454,13 +443,27 @@ export default {
     },
     _getFollow: function() {
       this.scrollData[this.currentIndex] = {content: [], page: 1, noMore: false}
-      getMyFollow(this.token, this.uid, 0, 1)
+      this.token && getMyFollow(this.token, this.uid, 0, 1)
       .then((res) => this._setData(res))
       .then(() => this.$forceUpdate())
       .then(() => this.scrollSwiper[this.currentIndex].swiper.lazy.load())
     },
-    toHot: function(){
-
+    _goDetail: function(v) {
+      if(v.content_type === 1) {
+        console.log('video')
+        this.$router.push({ path: `channel/video/${v.id}`})
+      }else if(v.content_type === 2) {
+        this.$router.push({ path: `channel/article/${v.id}`})
+      }else if(v.content_type === 3) {
+        console.log('audio')
+        this.$router.push({ path: `channel/audio/${v.id}`})
+      }
+    }
+  },
+  watch: {
+    // 登录后获取我的关注
+    token: function(val, oldVal){
+      this._getFollow()
     }
   }
 };
@@ -468,224 +471,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "src/css/mixin";
-.login{
-  padding: 100px 0;
-  text-align: center;
-  font-size: 13px;
-}
-.login p{
-  margin: 20px 0;
-}
-.login a{
-  display: inline-block;
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  color: #fff;
-  background: -webkit-linear-gradient(left, #53b0e1, #3b93eb);
-  border-radius: 15px;
-}
-.channel h1 {
-  text-align: center;
-  line-height: 100px;
-}
-#top{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  max-width: 540px;
-  background-color: #fff;
-  z-index: 3;
-}
-#search{
-  padding: 0 5px;
-}
-#search input{
-  width: 100%;
-  height: 28px;
-  line-height: 28px;
-  font-size: 13px;
-  padding: 5px 10px;
-  border: 1px solid #eee;
-  border-radius: 16px;
-}
-#filter{
-  margin: 0 15px;
-  height: 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-  line-height: 40px;
-}
-#nav {
-  width: 100%;
-  height: 44px;
-  line-height: 44px;
-  border-top: 1px solid #eee;
-  background-color: #fff;
-}
-.nav-item{
-  width: 80px !important;
-  text-align: center;
-}
-#page {
-  width: 100%;
-  height: 100%;
-  // padding-top: 44px;
-}
-.scroll {
-  width: 100%;
-  height: 100%;
-}
-.scroll .swiper-slide{
-  height: auto;
-}
-.refresh {
-  margin-top: 40px;
-  line-height: 44px;
-  text-align: center;
-  width: 100%;
-}
-.loadmore {
-  padding-bottom: 50px;
-  line-height: 30px;
-  text-align: center;
-  width: 100%;
-}
-.bar {
-	width:50px;
-	height:3px;
-	position:absolute;
-	bottom:0px;
-}
-.bar .color {
-	width:50px;
-	margin:0 auto;
-	height:3px;
-	background:#ff4891;
-}
-.card{
-  margin: 10px auto 30px;
-  line-height: 25px;
-}
-.image{
-  position: relative;
-  width: 100%;
-  padding-bottom: 40%;
-  height: 0;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-.filterBox{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 540px;
-  margin: 0 auto;
-  background-color: #fff;
-  transform: translateY(100%);
-  transition: all .5s ease;
-  will-change: transform;
-  z-index: 100;
-
-  p{
-    line-height: 30px;
-    text-align: center;
-    font-size: 15px;
-    color: #666;
-  }
-}
-.show-filter{
-  transform: translateY(0);
-}
-.mark{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, .7);
-  z-index: 99;
-}
-.goTop{
-  position: fixed;
-  right: 15px;
-  bottom: 100px;
-  padding: 10px;
-  width: 50px;
-  height: 50px;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  line-height: 15px;
-  font-size: 12px;
-  text-align: center;
-  color: #666;
-  background-color: #fff;
-  z-index: 5;
-}
-.recommend-item{
-  padding: 0 15px 30px;
-  background-color: #fff;
-
-  .image-path{
-    position: relative;
-    padding-bottom: 40%;
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #f2f6f2;
-  }
-  .item-title{
-    margin: 4px 0;
-    font-size: 17px;
-  }
-  .item-intro{
-    margin: 4px 0;
-    font-size: 14px;
-    line-height: 21px;
-    max-height: 42px;
-    color: #999;
-  }
-  .head_pic{
-    border-radius: 50%;
-  }
-  .btns{
-    height: 20px;
-    line-height: 20px;
-  }
-  .answerd .item-title,
-  .answerd .item-intro,
-  .answerd .btns{
-    color: #999;
-  }
-  .btn-left{
-    font-size: 13px;
-  }
-  .btn-left img{
-    width: 14px;
-    height: 14px;
-    vertical-align: middle;
-  }
-  .btn-left span,
-  .btn-right span{
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  .btn-right{
-    font-size: 11px;
-  }
-  .btn-right img{
-    margin-left: 10px;
-    width: 12px;
-    vertical-align: middle;
-  }
-}
+@import './channel.scss';
 </style>
+
