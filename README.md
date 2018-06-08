@@ -1,6 +1,5 @@
 # vue2-jituxueba
 
-> es6+vue全家桶+axios+mint-ui+vue-awesome-swiper+better-scroll+sass+webpack 
 > es6 + vue + vue-router + vuex + axios + vue-awesome-swiper + better-scroll + sass + webpack
 
 > you may use eventBus instead of vuex.
